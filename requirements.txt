@@ -1,0 +1,6 @@
+sqlmodel
+pydentic
+sqlalchemy
+pandas
+numpy
+fastapi
