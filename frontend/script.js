@@ -14,23 +14,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Masters data fetch karne ka function
 function fetchMastersData() {
-  fetch("https://5ab2-110-226-183-128.ngrok-free.app/docs") 
-  // Backend ka API URL
-  .then(response => response.json())  
-  .then(data => {
+  fetch("http://127.0.0.1:8000/read_master_input/")
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then(data => {
       const tableBody = document.getElementById("masters-table");
-      tableBody.innerHTML = ""; 
-      
-      data.data.forEach(row => {
-          let tr = document.createElement("tr");
-          tr.innerHTML = `
-              <td>${row.id}</td>
-              <td>${row.name}</td>
-              <td>${row.category}</td>
-              <td>${row.status}</td>
-          `;
-          tableBody.appendChild(tr);
+      tableBody.innerHTML = "";  // Clear existing data
+
+      data.forEach(row => {
+        let tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${row.id || "N/A"}</td>
+          <td>${row.name || "N/A"}</td>
+          <td>${row.category || "N/A"}</td>
+          <td>${row.sub_category || "N/A"}</td>
+        `;
+        tableBody.appendChild(tr);
       });
-  })
-  .catch(error => console.error("Error fetching data:", error));
+    })
+    .catch(error => console.error("Error fetching data:", error));
 }

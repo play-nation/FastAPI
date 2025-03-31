@@ -21,7 +21,7 @@ def create_master_input(db:Session, master_input = MasterInputBase):
 def get_master_input(
     db:Session,
     offset:int=0,
-    limit: int =10 ):
+    limit: int =10):
 
     result =db.query(MasterInput).offset(offset).limit(limit).all()
 

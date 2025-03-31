@@ -5,9 +5,15 @@ from fastapi import FastAPI, Depends, APIRouter
 from backend.app.api.endpoints.products import router as product_router
 from sqlalchemy.orm import session
 from backend.app.database.session import SessionLocal
+from backend.app.api.endpoints import products
 import logging
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
+
+# Include products router with /api prefix
+# app.include_router(products.router, prefix="/api/products")
 
 
 @app.get("/")
@@ -18,6 +24,16 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 app.include_router(product_router)
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Adjust for security in production
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 
 # @app.post("/test/")
