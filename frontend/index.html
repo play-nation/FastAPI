@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="./style.css">
+    <script defer src="./script.js"></script>
+    
+    <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+  </head>
+  <body>
+    <div class="grid-container">
+      
+      <!-- Sidebar -->
+      <aside id="sidebar">
+        <div class="sidebar-title">
+          <div class="sidebar-brand">Dashboard</div>
+          <span class="material-icons-outlined" onclick="toggleSidebar()"></span>
+        </div>
+        <ul class="sidebar-list">
+          <li><a href="#" onclick="showPage('masters')">Masters</a></li>
+          <li><a href="#" onclick="showPage('imported')">Imported Data</a></li>
+          <li><a href="#" onclick="showPage('complete')">Complete Data</a></li> 
+          <li><a href="#" onclick="showPage('incomplete')">Incomplete Data</a></li>          
+          <li><a href="#" onclick="showPage('reports')">Reports</a></li>
+          <li><a href="#" onclick="showPage('settings')">Settings</a></li>
+        </ul>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-container">
+        <div id="dashboard-content">
+          <div class="main-cards">
+            <div class="card">Masters <span class="count">00</span></div>
+            <div class="card">Imported <span class="count">00</span></div>
+            <div class="card">Complete <span class="count">00</span></div>
+            <div class="card">Incomplete <span class="count">00</span></div>
+          </div>
+        </div>
+        
+        <div id="masters-page" class="hidden">
+          <div class="main-content">
+            <h2>Masters Data</h2>
+            <input type="text" id="search" placeholder="Search...">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="masters-table">
+                    <tr>
+                        <td>1</td>
+                        <td>ABC</td>
+                        <td>State</td>
+                        <td>Complete</td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>ABC</td>
+                      <td>State</td>
+                      <td>Incomplete</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>ABC</td>
+                    <td>State</td>
+                    <td>Complete</td>
+                </tr>
+                </tbody>
+            </table>
+
+          </div>
+        </div>
+
+        <div id="imported-page" class="hidden">
+          <div class="container">
+            <h2>Imported Data</h2>
+            <input type="file" id="file-upload" accept=".csv">
+            <button class="import-btn" onclick="uploadFile()">Import</button>
+            <p id="message" class="error-message"></p>
+          </div>
+        </div>
+
+        <div id="complete-page" class="hidden">
+          <div class="main-content">
+            <h2>Complete Data</h2>
+            <input type="text" id="search" placeholder="Search...">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="complete-table">
+                    <tr>
+                        <td>2</td>
+                        <td>XYZ</td>
+                        <td>District</td>
+                        <td>Complete</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>XYZ</td>
+                      <td>District</td>
+                      <td>Complete</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>XYZ</td>
+                      <td>District</td>
+                      <td>Complete</td>
+                  </tr>
+                </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="incomplete-page" class="hidden">
+          <div class="main-content">
+            <h2>Incomplete Data</h2>
+            <input type="text" id="search" placeholder="Search...">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="incomplete-table">
+                    <tr>
+                        <td>3</td>
+                        <td>PQR</td>
+                        <td>Block</td>
+                        <td>Incomplete</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>PQR</td>
+                      <td>Block</td>
+                      <td>Incomplete</td>
+                  </tr><tr>
+                    <td>3</td>
+                    <td>PQR</td>
+                    <td>Block</td>
+                    <td>Incomplete</td>
+                </tr>
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+    
+    <style>
+      .hidden { display: none; }
+    </style>
+    
+    <script>
+      function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        sidebar.style.display = sidebar.style.display === "block" ? "none" : "block";
+      }
+      
+      function showPage(page) {
+        document.getElementById("dashboard-content").classList.add("hidden");
+        document.getElementById("masters-page").classList.add("hidden");
+        document.getElementById("imported-page").classList.add("hidden");
+        document.getElementById("complete-page").classList.add("hidden");
+        document.getElementById("incomplete-page").classList.add("hidden");
+        
+        document.getElementById(`${page}-page`).classList.remove("hidden");
+      }
+    </script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
